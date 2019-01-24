@@ -84,3 +84,15 @@ heroku local web
 ```
 
 And then in a web browser, go to http://localhost:5000
+
+### Resources
+
+##### BRFv4 Face Vertex Map
+
+![BRFv4 Map](public/images/brfv4-vertices.jpg)
+
+##### P5 Examples
+
+[Here's a link to the p5 Examples page](https://p5js.org/examples/)
+
+[Here's a link to the p5 web editor](https://editor.p5js.org/). This is really good for experimenting and trying out some of their examples.
