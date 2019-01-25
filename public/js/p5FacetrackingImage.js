@@ -9,6 +9,9 @@ var faceTrackingStatus = false;
 var canvasWidth = 640;
 var canvasHeight = 480;
 
+// IMAGE VARIABLE
+var smiley;
+
 // function to set up the canvas that will draw the webcam's input
 var webcamCanvas = function( p ) {
   p.setup = function() {
@@ -30,6 +33,8 @@ var webcamCanvas = function( p ) {
 var drawingCanvas = function( p ) {
   p.setup = function() {
     setupCanvas(p);
+    p.imageMode(p.CENTER);
+    img = p.loadImage("../images/upside-down.png")
   };
 
   p.draw = function() {
@@ -43,10 +48,7 @@ var drawingCanvas = function( p ) {
 
     // only draw if you've received data from the facetracking library
     if (faceDataReceived == true && faceTrackingStatus == true) {
-      for(var k = 0; k < faceVertices.length; k += 2) {
-        // draw a circle on top of each face vertex - you have to divide the vertex's X and Y coordinates by 2 to draw accurately on the p5 canvas
-        p.ellipse(faceVertices[k]/2, faceVertices[k+1]/2, 5, 5);
-      }
+        p.image(img, faceVertices[58]/2, faceVertices[59]/2);
     }
   };
 }

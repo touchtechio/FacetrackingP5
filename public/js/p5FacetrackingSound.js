@@ -26,10 +26,39 @@ var webcamCanvas = function( p ) {
   };
 }
 
+// SOUND VARIABLES
+// The midi notes of a scale
+var notes = [ 60, 62, 64, 65, 67, 69, 71];
+var osc;
+var audioEnabled = false;
+var faceXRotationIntPrevious;
+var faceXRotationInt;
+
+// A function to play a note
+function playNote(note, duration, p) {
+    osc.freq(p.midiToFreq(note));
+    // Fade it in
+    osc.fade(0.5,0.2);
+
+    //If we sest a duration, fade it out
+    if (duration) {
+        setTimeout(function() {
+        osc.fade(0,0.2);
+        }, duration-50);
+    }
+}
+
 // function to set up the canvas that will draw whatever layers we want to place on top of the webcam's input
 var drawingCanvas = function( p ) {
   p.setup = function() {
     setupCanvas(p);
+    p.noStroke();
+
+    // A triangle oscillator
+    osc = new p5.TriOsc();
+    // Start silent
+    osc.start();
+    osc.amp(0);
   };
 
   p.draw = function() {
@@ -37,18 +66,35 @@ var drawingCanvas = function( p ) {
     p.clear();
     // set the canvas background to transparent (otherwise you won't see the webcam's input)
     p.background(0, 0, 0, 0);
-    // set the
-    p.fill(0, 0, 0, 0);
-    p.stroke(255, 0, 0);
 
     // only draw if you've received data from the facetracking library
     if (faceDataReceived == true && faceTrackingStatus == true) {
-      for(var k = 0; k < faceVertices.length; k += 2) {
-        // draw a circle on top of each face vertex - you have to divide the vertex's X and Y coordinates by 2 to draw accurately on the p5 canvas
-        p.ellipse(faceVertices[k]/2, faceVertices[k+1]/2, 5, 5);
-      }
+        p.fill(255, 0, 0);
+        p.ellipse(30, 30, 10);
+        // only play sounds if we've clicked the screen 
+        if (audioEnabled == true) {
+            // map your face rotation to an integer between 0 and 6
+            faceXRotationInt = p.int(p.map(faceRotation[1], -0.4, 0.4, 0, 6));
+            
+            // check to see if this integer is different from the previous frame
+            if (faceXRotationInt != faceXRotationIntPrevious) {
+                playNote(notes[faceXRotationInt], 500, p);
+            }
+
+            // set the rotation comparisons equal to one another
+            faceXRotationIntPrevious = faceXRotationInt;
+        }
     }
   };
+
+  // you need to manually enable audio context in order to get Chrome to 
+  // play audio
+  p.mousePressed = function() {
+      if (audioEnabled == false) {
+        p.getAudioContext().resume();
+        audioEnabled = true;
+      }
+  }
 }
 
 var p5Webcam = new p5(webcamCanvas, 'canvasContainer');
