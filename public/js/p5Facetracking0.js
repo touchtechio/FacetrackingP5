@@ -6,8 +6,8 @@ var faceRotation;
 var faceDataReceived = false;
 var faceTrackingStatus = false;
 
-var canvasWidth = 640;
-var canvasHeight = 480;
+var canvasWidth = 1280;
+var canvasHeight = 720;
 
 // function to set up the canvas that will draw the webcam's input
 var webcamCanvas = function( p ) {
@@ -18,7 +18,6 @@ var webcamCanvas = function( p ) {
     webcam = p.createCapture('VIDEO');
     webcam.size(canvasWidth, canvasHeight);
     webcam.hide();
-    webcam.volume(0);
   };
 
   p.draw = function() {
@@ -34,7 +33,7 @@ var drawingCanvas = function( p ) {
 
   p.draw = function() {
     // clear the canvas drawing buffer each frame (can easily be turned off)
-    p.clear();
+    //p.clear();
     // set the canvas background to transparent (otherwise you won't see the webcam's input)
     p.background(0, 0, 0, 0);
     // set the
@@ -47,64 +46,9 @@ var drawingCanvas = function( p ) {
         // draw a circle on top of each face vertex - you have to divide the vertex's X and Y coordinates by 2 to draw accurately on the p5 canvas
         p.ellipse(faceVertices[k]/2, faceVertices[k+1]/2, 5, 5);
       }
-
-
-
     }
   };
 }
-
-
-
-
-function eye(p, x, y) {
-	p.noStroke();
-	p.fill(240, 240, 240);
-	p.ellipse(x,y, 50);
-
-
-	p.fill(50, 123, 12);
-	p.ellipse(x,y, 30);
-
-	p.fill(0, 0, 0);
-	p.ellipse(x,y, 5);
-
-}
-
-
-
-function smile(x, y) {
-	
-	p.noFill();
-	p.arc(x, y, 60, 20, 0, PI);
-
-
-}
-
-
-
-function nose(x, y) {
-
-	p.noFill();
-	p.ellipse(x, y, 60, 20);
-
-}
-
-
-
-function keyPressed() {
-  if (keyCode === 32) {
-		mode += 1;
-		mode %= modeMax;
-		console.log('mode:' + mode)
-	} 
-		
-
-	console.log(keyCode)
-
-
-}
-
 
 var p5Webcam = new p5(webcamCanvas, 'canvasContainer');
 var p5Drawing = new p5(drawingCanvas, 'canvasContainer');

@@ -70,6 +70,24 @@ var drawingCanvas = function( p ) {
     
     if (faceDataReceived == true && faceTrackingStatus == true) {
         p.fill(255, 0, 0);
+
+
+        xcenter = p.displayWidth / 2;
+        ycenter = p.displayHeight / 2;
+        
+        p.rectMode(p.CENTER);
+        var xposMag = 10;
+        var yposMag = 10;
+
+
+        rectx = xcenter + faceRotation[1] * xposMag
+        recty = ycenter + faceRotation[0] * yposMag
+
+        p.rect(rectx -50, recty-50, rectx+50, recty+50);
+
+        console.log("x-rot:" + faceRotation[0] + " y-rot:" + faceRotation[1]);
+        console.log("x:" + rectx + " y:" + recty);
+
         p.ellipse(30, 30, 10);
 
         // Update the position of the ball
