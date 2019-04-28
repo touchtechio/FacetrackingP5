@@ -17,16 +17,8 @@ let distLeft, distRight;
 let notFound;
 let direction = 0;
 
-let mountainPos = [200,120]
-let shrinePos = [1300,520]
-let unicornPos = [700,-50]
-let mountainActive = false
-let shrineActive = false
-let unicornActive = false
-
-
 function setup() {
-  var cnv = createCanvas(1800, 700);
+  var cnv = createCanvas(1200, 400);
   cnv.position(0, 0);
 
   bx = width / 2.0+200;
@@ -42,7 +34,7 @@ function setup() {
   // setup camera capture
   var videoInput = createCapture(VIDEO);
   videoInput.size(400, 300);
-  //videoInput.position(800, 0);
+  videoInput.position(800, 0);
 
   // setup tracker
   ctracker = new clm.tracker();
@@ -51,20 +43,17 @@ function setup() {
 
   fill(255);
 
+
 }
 
 function draw() {
   background(255, 255, 255, 1);
-  setGradient(0, 0, width, height/2, c2, c1, Y_AXIS);
+  setGradient(0, 0, width, height/2-22, c2, c1, Y_AXIS);
   fill(c1);
-  rect(0, height,width,height/2);
-  invite();
+  rect(0, height,width,220);
 
-
-  makeMountain(mountainPos[0],mountainPos[1]);
-  makeShrine(shrinePos[0],shrinePos[1]);
-  drawUnicorn(unicornPos[0],unicornPos[1], unicornActive);
-
+  make_mountain(200,50);
+  makeShrine(900,300);
   // Test if the cursor is over the box
   if (
     mouseX > bx - boxSize &&
@@ -82,20 +71,14 @@ function draw() {
     fill(255, 122, 130);
     overBox = false;
   }
-  //
-  // //Draw the box
-  // rect(bx, by, boxSize, boxSize);
-  //   by -= 1/4
-  //   if (by < 0) {
-  //   by = 400;
-  //   }
 
-  // todo : deactivate targets
-  //mountainActive = false
-  //shrineActive = false
-  //unicornActive= false
+  //Draw the box
+  rect(bx, by, boxSize, boxSize);
+    by -= 1/4
+    if (by < 0) {
+    by = 400;
+    }
 
-  // draw all balloons
   for (var i = 0; i <balloon.length; i++) {
 
     if (balloon[i].y < -100) {
@@ -104,16 +87,6 @@ function draw() {
     else{
       balloon[i].speak()
     }
-
-    if (balloon[i].isNearMountain()) {
-      mountainActive = true
-    }
-    if (balloon[i].isNearShrine()) {
-      shrineActive = true
-    }
-    if (balloon[i].isNearUnicorn()) {
-      unicornActive = true
-    }
   }
 
   // get array of face marker positions [x, y] format
@@ -121,6 +94,7 @@ function draw() {
 
   // if should draw new face points
   if (positionArray) {
+    console.log("pos", positionArray)
     drawPoint = positionArray
   }
   for (var i=0; i<drawPoint.length; i++) {
@@ -151,7 +125,7 @@ function draw() {
     notFound = true;
   }
 
-  //rect(width/2, 200, distLeft, distRight)
+  rect(width/2, 200, distLeft, distRight)
 
 
   // if ( overBox) {
@@ -211,6 +185,92 @@ function make_balloons(x, y) {
   arc(x,y+12,100,175,radians(-90),radians(90));//inside right arc
   arc(x,y+12,100,175,radians(90),radians(270));//inside left arc
   rect(x-0,y+150,20,20);//basket
+
+
+}
+
+function make_mountain(x, y){
+  stroke(255,200,255,1);
+  strokeWeight(5);
+  fill(15,100,150,1);
+  c_w = 250+x
+  s_p = -140+x
+  beginShape();
+  curveVertex(s_p-100, 180);
+  curveVertex(s_p-100, 180);
+  curveVertex(s_p+120, 80);
+  curveVertex((c_w-(s_p))/2+(s_p), 50);
+  curveVertex(c_w-120, 80);
+  curveVertex(c_w+100, 180);
+  curveVertex(c_w+100, 180);
+  // curveVertex(10, 80);
+  endShape();
+
+  fill(255,255,255,1);
+
+  c_w = 135+x
+  s_p = -25+x
+  beginShape();
+  curveVertex(s_p, 80);
+  curveVertex(s_p, 80);
+  curveVertex((c_w-(s_p))/2+(s_p), 40);
+  curveVertex(c_w, 80);
+  curveVertex(c_w, 80);
+  // curveVertex(10, 80);
+  endShape();
+
+}
+
+function makeShrine(x,y){
+  w1=40;
+  h1=30;
+  //noStroke();
+  stroke(255,200,255,1);
+  strokeWeight(5);
+  fill(255,0,0,1);
+  rect(x,y,w1,h1);
+  b1 = 10;
+  fill(255,255,255,1);
+  noStroke();
+  rect(x,y,w1-b1,h1-b1);
+
+  w2=w1-2;
+  h2=h1-5;
+  y2 =y-h1*2-10;
+  stroke(255,200,255,1);
+  fill(255,0,0,1);
+  rect(x,y2,w2,h2);
+  b1 = 10;
+  fill(255,255,255,1);
+  noStroke();
+  rect(x,y2,w2-b1,h2-b1);
+
+  w3=w2-4;
+  h3=h2-2;
+  y3 =y2-h2*2-15;
+  stroke(255,200,255,1);
+  fill(255,0,0,1);
+  rect(x,y3,w3,h3);
+  b1 = 14;
+  fill(255,255,255,1);
+  noStroke();
+  rect(x,y3,w2-b1,h2-b1);
+  stroke(255,200,255,1);
+  makeRoof(x,y);
+  makeRoof(x,y2);
+  makeRoof(x,y3+5);
+}
+
+function makeRoof(x,y){
+    beginShape();
+  vertex(x-80,y-25);
+  vertex(x-45,y-35);
+  vertex(x-35,y-45);
+  vertex(x+35,y-45);
+  vertex(x+45,y-35);
+  vertex(x+80,y-25);
+  endShape();
+
 }
 
 class Point {
@@ -228,33 +288,10 @@ class Point {
     this.x += direction
     this.y -= 0.5*this.noise
     if (this.y < -200) {
-      this.y = windowHeight+20;
-    }
-  }
+    this.y = windowHeight+20;
 
-  distance(x, y) {
-    return sqrt(pow(x-this.x, 2) + pow(y-this.y,2))
   }
-
-  isNearMountain() {
-    return this.mountainDistance() < 200;
   }
-  mountainDistance() {
-    return this.distance(mountainPos[0], 100+mountainPos[1]);
-  }
-  isNearShrine() {
-    return this.shrineDistance() < 150;
-  }
-  shrineDistance() {
-    return this.distance(shrinePos[0], shrinePos[1]-100);
-  }
-  isNearUnicorn() {
-    return this.unicornDistance() < 150;
-  }
-  unicornDistance() {
-    return this.distance(unicornPos[0], unicornPos[1]);
-  }
-
 }
 
 function setGradient(x, y, w, h, c1, c2, axis) {
@@ -280,25 +317,10 @@ function setGradient(x, y, w, h, c1, c2, axis) {
 }
 
 function invite(){
-  // text box
-  fill(255,200,255,1);
-  stroke(255,200,255,1);
-  rect(0, height, width,150)
+    fill(0)
+  strokeWeight(0)
   textSize(15);
-  strokeWeight(1)
-  stroke(0,0,5,1);
-  fill(0,0,5,1);
-
-  //text('Count:' + balloon.length, 30, height-100);
-  if (shrineActive) {
-    text('You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family', 30, height-100);
-  }
-  if (mountainActive) {
-    text('Many people fantasize about going to Japan, we are such people. We have to get very far away from all our computers', 30, height-120);
-  }
-  if (balloon.length>0){
-    text("MOUNTAIN:"+ balloon[0].mountainDistance(), 30, height -80);
-    text("SHRINE:"+ balloon[0].shrineDistance(), 30, height -60);
-    text("UNICORN:"+ balloon[0].unicornDistance(), 30, height -40);
-  }
+  //text('Count:' + balloon.length, 100, 30);
+  text('Wokyo:' + balloon.length, bx-20, by-50);
+  text('Celebrate in March 2020:', bx-20, by);
 }
