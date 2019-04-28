@@ -16,7 +16,7 @@ class Shrine{
     let w1=40;
     let h1=30;
     noStroke();
-    stroke(255,200,255,1);
+    stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
     strokeWeight(0);
 
     if (this.active) strokeWeight(5);
@@ -31,7 +31,7 @@ class Shrine{
     let w2=w1-2;
     let h2=h1-5;
     let y2 =y-h1*2-10;
-    stroke(255,200,255,1);
+    stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
     fill(255,0,0,1);
     rect(x,y2,w2,h2);
     b1 = 10;
@@ -42,14 +42,14 @@ class Shrine{
     let w3=w2-4;
     let h3=h2-2;
     let y3 =y2-h2*2-15;
-    stroke(255,200,255,1);
+    stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
     fill(255,0,0,1);
     rect(x,y3,w3,h3);
     b1 = 14;
     fill(255,255,255,1);
     noStroke();
     rect(x,y3,w2-b1,h2-b1);
-    stroke(255,200,255,1);
+    stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
     this.makeRoof(x,y);
     this.makeRoof(x,y2);
     this.makeRoof(x,y3+5);
@@ -69,10 +69,16 @@ class Shrine{
   }
 
   checkDistance(x, y){
+    // if balloon is near, reset activeStart time
     if (this.distance(x,y) < 200){
       this.active = true
-      return this.active
+      // the last frame that balloon is near target
+      this.activeStart = millis()
     }
+    if ((millis() - this.activeStart) > selectDuration) {
+      this.active = false
+    }
+    return this.active
   }
 
   distance(x, y) {

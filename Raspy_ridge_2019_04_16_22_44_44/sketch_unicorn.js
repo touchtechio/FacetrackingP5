@@ -6,13 +6,13 @@ var sColorGEye = 1;
 var sColorB = 75;
 var value = 0;
 
-
 class Unicorn {
 
   constructor (x, y) {
     this.x = x
     this.y = y
     this.active = false
+    this.activeStart = 0;
   }
 
   makeUnicorn() {
@@ -38,8 +38,14 @@ class Unicorn {
   }
 
   checkDistance(x, y){
+    // if balloon is near, reset activeStart time
     if (this.distance(x,y) < 200){
       this.active = true
+      // the last frame that balloon is near target
+      this.activeStart = millis()
+    }
+    if ((millis() - this.activeStart) > selectDuration) {
+      this.active = false
     }
     return this.active
   }
@@ -47,23 +53,6 @@ class Unicorn {
   distance(x, y) {
     return sqrt(pow(x-this.x, 2) + pow(y-(this.y+100),2))
   }
-
-  // function mouseClicked() {
-  //   if (value ==0) {
-  //     fill(190, 188, 222);
-  //     noStroke();
-  //     quad(350, 377, 463, 486, 388, 731, 171, 640);
-  //     stroke(1);
-  //     jaw(0, 0);
-  //     value = 1;
-  //   } else {
-  //     fill(190, 188, 222);
-  //     noStroke();
-  //     quad(350, 377, 463, 486, 388, 731, 171, 640);
-  //     jaw(0,10);
-  //     value = 0;
-  //   }
-  // }
 
   jaw(xshift, yshift) {
     stroke(sColorR, sColorG, sColorB);
@@ -146,8 +135,6 @@ class Unicorn {
       curveVertex(370, 445);
       curveVertex(366, 440);
       endShape();
-
-
     }
   }
 
@@ -169,10 +156,10 @@ class Unicorn {
 
   hair() {
     fill(255, 200, 20);
-    stroke(sColorR, sColorG, sColorB);
+    //stroke(sColorR, sColorG, sColorB);
     if (this.active){
     strokeWeight(10)
-    stroke(255,200,255,1);
+    stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
   } else {
     noStroke();
   }

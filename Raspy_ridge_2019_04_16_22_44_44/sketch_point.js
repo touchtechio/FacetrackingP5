@@ -21,23 +21,4 @@ class Point {
     return sqrt(pow(x-this.x, 2) + pow(y-this.y,2))
   }
 
-  // isNearMountain() {
-  //   return this.mountainDistance() < 200;
-  // }
-  // mountainDistance() {
-  //   return this.distance(mountainPos[0], 100+mountainPos[1]);
-  // }
-  // isNearShrine() {
-  //   return this.shrineDistance() < 150;
-  // }
-  // shrineDistance() {
-  //   return this.distance(shrinePos[0], shrinePos[1]-100);
-  // }
-  isNearUnicorn() {
-    return this.unicornDistance() < 150;
-  }
-  unicornDistance() {
-    return this.distance(unicornPos[0], unicornPos[1]);
-  }
-
 } // end class Point

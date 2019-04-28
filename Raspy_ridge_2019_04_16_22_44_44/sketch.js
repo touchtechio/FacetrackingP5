@@ -12,11 +12,17 @@ let balloon = []
 let targetMountain = new Mountain(200, 120)
 let targetShrine = new Shrine(1300, 520)
 let targetUnicorn = new Unicorn(700, -50)
+let unicornCloud = new Cloud(700, 320)
+let unicornCloud2 = new Cloud(500, 350)
 
 // for background gradient rendering
 const Y_AXIS = 1;
 const X_AXIS = 2;
 let b1, b2, c1, c2;
+
+// stroke color for selected objects
+let selRGBA = [255, 200, 255, 1];
+let selectDuration = 3000;
 
 
 function setup() {
@@ -39,7 +45,7 @@ function setup() {
   //noLoop();
   // setup camera capture
 
-  // create face handler and drawer 
+  // create face handler and drawer
   face = new Face()
 
   fill(255);
@@ -56,6 +62,8 @@ function draw() {
   targetMountain.makeMountain();
   targetShrine.makeShrine();
   targetUnicorn.makeUnicorn();
+  unicornCloud.makeCloud();
+  unicornCloud2.makeCloud();
 
   // draw all balloons
   for (var i = 0; i <balloon.length; i++) {
@@ -133,10 +141,13 @@ function invite(){
   if (targetMountain.active) {
     text('Many people fantasize about going to Japan, we are such people. We have to get very far away from all our computers', 30, height-120);
   }
-  if (balloon.length>0){
-    text("MOUNTAIN:"+ targetMountain.distance(balloon[0].x, balloon[0].y), 30, height -80);
-    text("SHRINE:"+ targetShrine.distance(balloon[0].x, balloon[0].y), 30, height -60);
-    //text("SHRINE:"+ balloon[0].shrineDistance(), 30, height -60);
-    text("UNICORN:"+ targetUnicorn.distance(balloon[0].x, balloon[0].y), 30, height -40);
+  if (targetUnicorn.active) {
+    text('We really wanted to take a pause to celebrate. Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you! Therefore this celebration could not be complete without you.', 30, height-80);
   }
+  // if (balloon.length>0){
+  //   text("MOUNTAIN:"+ targetMountain.distance(balloon[0].x, balloon[0].y), 30, height -80);
+  //   text("SHRINE:"+ targetShrine.distance(balloon[0].x, balloon[0].y), 30, height -60);
+  //   //text("SHRINE:"+ balloon[0].shrineDistance(), 30, height -60);
+  //   text("UNICORN:"+ targetUnicorn.distance(balloon[0].x, balloon[0].y), 30, height -40);
+  // }
 }

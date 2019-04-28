@@ -1,3 +1,5 @@
+//let selRGBA = [255, 200, 255, 1];
+
 class Mountain{
 
   constructor (x, y) {
@@ -12,7 +14,7 @@ class Mountain{
     scale(1.5);
     let x=0
     let y=0
-    stroke(255,200,255,1);
+    stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
     strokeWeight(0);
     if (this.active) strokeWeight(5);
     fill(15,100,150,1);
@@ -46,8 +48,14 @@ class Mountain{
   }
 
   checkDistance(x, y){
+    // if balloon is near, reset activeStart time
     if (this.distance(x,y) < 200){
       this.active = true
+      // the last frame that balloon is near target
+      this.activeStart = millis()
+    }
+    if ((millis() - this.activeStart) > selectDuration) {
+      this.active = false
     }
     return this.active
   }
