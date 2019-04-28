@@ -1,60 +1,83 @@
-function makeShrine(x,y, selected){
-  push();
-  translate(x,y);
-  scale(2);
-  x=0;
-  y=0;
-  w1=40;
-  h1=30;
-  noStroke();
-  stroke(255,200,255,1);
-  strokeWeight(0);
+class Shrine{
 
-  if (selected) strokeWeight(5);
+  constructor (x, y) {
+    this.x = x
+    this.y = y
+    this.active = false
+  }
 
-  fill(255,0,0,1);
-  rect(x,y,w1,h1);
-  b1 = 10;
-  fill(255,255,255,1);
-  noStroke();
-  rect(x,y,w1-b1,h1-b1);
+  makeShrine(){
+    push();
+    translate(this.x, this.y);
+    scale(2);
+    // draw shrine at 0,0
+    let x=0;
+    let y=0;
+    let w1=40;
+    let h1=30;
+    noStroke();
+    stroke(255,200,255,1);
+    strokeWeight(0);
 
-  w2=w1-2;
-  h2=h1-5;
-  y2 =y-h1*2-10;
-  stroke(255,200,255,1);
-  fill(255,0,0,1);
-  rect(x,y2,w2,h2);
-  b1 = 10;
-  fill(255,255,255,1);
-  noStroke();
-  rect(x,y2,w2-b1,h2-b1);
+    if (this.active) strokeWeight(5);
 
-  w3=w2-4;
-  h3=h2-2;
-  y3 =y2-h2*2-15;
-  stroke(255,200,255,1);
-  fill(255,0,0,1);
-  rect(x,y3,w3,h3);
-  b1 = 14;
-  fill(255,255,255,1);
-  noStroke();
-  rect(x,y3,w2-b1,h2-b1);
-  stroke(255,200,255,1);
-  makeRoof(x,y);
-  makeRoof(x,y2);
-  makeRoof(x,y3+5);
-  pop();
-}
+    fill(255,0,0,1);
+    rect(x,y,w1,h1);
+    let b1 = 10;
+    fill(255,255,255,1);
+    noStroke();
+    rect(x,y,w1-b1,h1-b1);
 
-function makeRoof(x,y){
-  beginShape();
-  vertex(x-80,y-25);
-  vertex(x-45,y-35);
-  vertex(x-35,y-45);
-  vertex(x+35,y-45);
-  vertex(x+45,y-35);
-  vertex(x+80,y-25);
-  endShape();
+    let w2=w1-2;
+    let h2=h1-5;
+    let y2 =y-h1*2-10;
+    stroke(255,200,255,1);
+    fill(255,0,0,1);
+    rect(x,y2,w2,h2);
+    b1 = 10;
+    fill(255,255,255,1);
+    noStroke();
+    rect(x,y2,w2-b1,h2-b1);
 
-}
+    let w3=w2-4;
+    let h3=h2-2;
+    let y3 =y2-h2*2-15;
+    stroke(255,200,255,1);
+    fill(255,0,0,1);
+    rect(x,y3,w3,h3);
+    b1 = 14;
+    fill(255,255,255,1);
+    noStroke();
+    rect(x,y3,w2-b1,h2-b1);
+    stroke(255,200,255,1);
+    this.makeRoof(x,y);
+    this.makeRoof(x,y2);
+    this.makeRoof(x,y3+5);
+    pop();
+  }
+
+  makeRoof(x,y){
+    beginShape();
+    vertex(x-80,y-25);
+    vertex(x-45,y-35);
+    vertex(x-35,y-45);
+    vertex(x+35,y-45);
+    vertex(x+45,y-35);
+    vertex(x+80,y-25);
+    endShape();
+
+  }
+
+  checkDistance(x, y){
+    if (this.distance(x,y) < 200){
+      this.active = true
+      return this.active
+    }
+  }
+
+  distance(x, y) {
+    // shrine center is at the base, so shift pos up 200
+    return sqrt(pow(x-this.x, 2) + pow(y-(this.y-200),2))
+  }
+
+} // end class Shrine
