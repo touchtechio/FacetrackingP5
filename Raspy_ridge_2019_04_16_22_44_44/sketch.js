@@ -27,6 +27,8 @@ let unicornActive = false
 
 function setup() {
   var cnv = createCanvas(1800, 700);
+  cnv.parent('sketch-holder');
+
   cnv.position(0, 0);
 
   bx = width / 2.0+200;
@@ -61,8 +63,8 @@ function draw() {
   invite();
 
 
-  makeMountain(mountainPos[0],mountainPos[1]);
-  makeShrine(shrinePos[0],shrinePos[1]);
+  makeMountain(mountainPos[0],mountainPos[1], mountainActive);
+  makeShrine(shrinePos[0],shrinePos[1], shrineActive);
   drawUnicorn(unicornPos[0],unicornPos[1], unicornActive);
 
   // Test if the cursor is over the box

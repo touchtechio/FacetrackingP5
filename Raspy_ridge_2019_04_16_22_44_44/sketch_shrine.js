@@ -1,4 +1,4 @@
-function makeShrine(x,y){
+function makeShrine(x,y, selected){
   push();
   translate(x,y);
   scale(2);
@@ -6,9 +6,12 @@ function makeShrine(x,y){
   y=0;
   w1=40;
   h1=30;
-  //noStroke();
+  noStroke();
   stroke(255,200,255,1);
-  strokeWeight(5);
+  strokeWeight(0);
+
+  if (selected) strokeWeight(5);
+
   fill(255,0,0,1);
   rect(x,y,w1,h1);
   b1 = 10;

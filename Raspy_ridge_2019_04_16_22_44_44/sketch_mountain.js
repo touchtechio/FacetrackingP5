@@ -1,11 +1,12 @@
-function makeMountain(x, y){
+function makeMountain(x, y, selected){
   push();
   translate(x,y);
   scale(1.5);
   x=0
   y=0
   stroke(255,200,255,1);
-  strokeWeight(5);
+  strokeWeight(0);
+  if (selected) strokeWeight(5);
   fill(15,100,150,1);
   c_w = 250+x
   s_p = -140+x
