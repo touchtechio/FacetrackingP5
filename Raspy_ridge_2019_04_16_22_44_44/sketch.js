@@ -9,11 +9,11 @@ let balloon = []
 
 // declare targets
 // must call checkDistance(x, y) with each balloon
-let targetMountain = new Mountain(200, 120)
+let targetMountain = new Mountain(300, 120)
 let targetShrine = new Shrine(1300, 500)
-let targetUnicorn = new Unicorn(700, -50)
-let unicornCloud = new Cloud(700, 320)
-let unicornCloud2 = new Cloud(500, 350)
+let targetUnicorn = new Unicorn(800, -50)
+let unicornCloud = new Cloud(800, 320)
+let unicornCloud2 = new Cloud(600, 350)
 
 // for background gradient rendering
 const Y_AXIS = 1;
@@ -23,6 +23,43 @@ let b1, b2, c1, c2;
 // stroke color for selected objects
 let selRGBA = [255, 200, 255, 1];
 let selectDuration = 5000;
+
+let submitted = false
+
+
+
+function submit() {
+
+  console.log('YOU ARE coming!')
+  //alert('submitted')
+  submitted = true
+  var url = 'http://localhost:5000/rsvp'; // A bad URL that will cause errors
+
+  //TODO: fill iwth form data from html inputs
+
+  var yes = document.getElementById("yes").value;
+  var msg = document.getElementById("message").value;
+  var sliderx = document.getElementById("feasibility").value;
+
+  postData = { title: 'YOU ARE coming!', yes:yes, message: msg, slider:sliderx};
+
+  console.log('slider ' + sliderx)
+  console.log('msg ' + msg)
+
+  httpPost(
+      url,
+      'binary',
+      postData,
+      function(result) {
+        console.log('FORM SUBMITTED! ', result)
+      },
+      function(error) {
+        console.log(error.toString());
+      }
+    );
+
+}
+
 
 
 function setup() {
@@ -56,8 +93,10 @@ function draw() {
   fill(c1);
   rect(0, height,width,height/2);
   invite();
+  textSize(15);
   text('look left or right to move ballon. Try to visit  sites on the page', 30, 30);
   text('Make new balloons by clicking on the page', 30, 60);
+  if (submitted) text('SUBMITTED')
 
   // draw targets
   targetMountain.makeMountain();
@@ -69,6 +108,15 @@ function draw() {
   // draw all balloons
   for (var i = 0; i <balloon.length; i++) {
 
+    if (balloon[i].x < -10) {
+      console.log("offscreens");
+      balloon[i].x = width+10;
+    }
+    if (balloon[i].x > width+10) {
+      console.log("right");
+      balloon[i].x = -10;
+    }
+    console.log("b",balloon[i].x)
     // delete balloon the are out of frame
     if (balloon[i].y < -100) {
       balloon.splice(i,1);
@@ -130,7 +178,7 @@ function invite(){
   fill(255,200,255,1);
   stroke(255,200,255,1);
   rect(0, height, width,180)
-  textSize(25);
+  textSize(20);
   strokeWeight(1)
   stroke(0,0,5,1);
   fill(0,0,5,1);

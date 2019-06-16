@@ -1,142 +1,144 @@
 <!DOCTYPE html><html><head>
-    <script src="./libs/p5.min.js"></script>
-    <script src="./libs/p5.dom.min.js"></script>
-    <script src="./libs/p5.sound.min.js"></script>
-    <script src="./libs/clmtrackr.js"></script>
-    <script src="./models/model_pca_20_svm.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8">
+  <script src="./libs/p5.min.js"></script>
+  <script src="./libs/p5.dom.min.js"></script>
+  <script src="./libs/p5.sound.min.js"></script>
+  <script src="./libs/clmtrackr.js"></script>
+  <script src="./models/model_pca_20_svm.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
-  </head>
-  <body>
-    <script src="sketch_face.js"></script>
-    <script src="sketch_unicorn.js"></script>
-    <script src="sketch_mountain.js"></script>
-    <script src="sketch_shrine.js"></script>
-    <script src="sketch_balloon.js"></script>
-    <script src="sketch_point.js"></script>
-    <script src="sketch_cloud.js"></script>
-    <script src="sketch.js"></script>
 
-    <div id="sketch-holder" class="top">
-      <!-- Our sketch will go here! -->
+  <meta charset="utf-8">
+
+</head>
+<body>
+  <script src="sketch_face.js"></script>
+  <script src="sketch_unicorn.js"></script>
+  <script src="sketch_mountain.js"></script>
+  <script src="sketch_shrine.js"></script>
+  <script src="sketch_balloon.js"></script>
+  <script src="sketch_point.js"></script>
+  <script src="sketch_cloud.js"></script>
+  <script src="sketch.js"></script>
+
+  <div id="sketch-holder" class="top">
+    <!-- Our sketch will go here! -->
+  </div>
+
+
+  <div class="form">
+    <h4>
+      A few questions:
+    </h4>
+    <h4>
+      Is it feasible for you to visit Japan with us in March 2020 ?
+      <input type="checkbox" checked id="yes"/>YES!
+      <input type="checkbox" id="no"/>no
+    </h4>
+    <h4>
+      Amount of Yesness   0.01%
+      <input type="range" min="1" max="100" value="50" class="sliderx" id="feasibility">
+      99.99%
+    </h4>
+
+    <h4>
+      Can we stay in touch about this trip and the planning?  Leave a msg, name, or email here:  <input min="1" max="100" value="hi!" type="text" id="message"/>
+    </h4>
+
+    <h4> Thanks for sharing this time with us and aiding in our planning </h4>
+    <input class="w3-input w3-border w3-round-large" type="button" onclick="submit()" value="click to submit"/>
+
+    <h4> Enjoy this playful site to learn about the adventure</h4>
+
+  </div>
+
+  <h4>Who - shrine</h4>
+
+    <p>
+      You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family.
+    </p>
+    <h4>
+      Why - unicorn
+    </h4>
+    <p>
+      We don’t tend to make a fuss about our relationship but we really wanted to take a pause to celebrate.
+    </p>
+    <p>
+      Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you! Therefore this celebration could not be complete without you.
+    </p>
+    <h4>
+      Why Wokyo? - mountain
+    </h4>
+    <p>
+      Many people fantasize about going to Japan, we are such people.
+    </p>
+    <p>
+      We have to get very far away from all our computers.
+    </p>
+    <h4>
+      Where
+    </h4>
+    <p>
+      Take a train less than two hours from Tokyo and stay nearby.
+    </p>
+    <h4>
+      What
+    </h4>
+    <p>
+      Save the date for our wedding celebration in Tokyo.
+    </p>
+    <h4>
+      When
+    </h4>
+    <p>
+      Throughout March we are planning a trip and residency south of Tokyo at the HackerFarm .
+    </p>
+    <p>
+      By the end of March we will host a gathering, hopefully with you in attendance.
+    </p>
+    <h4>
+      How
+    </h4>
+    <p>
+      Travel to Tokyo. Enjoy the time with friends and family.
+    </p>
+    <p>
+      The food and Japanese hospitality are excellent.
+    </p>
+    <h4>
+      The Schedule:
+    </h4>
+    <p>
+      Day 1: ramen
+    </p>
+    <p>
+      Day 2: Shabu Shabu
+    </p>
+    <p>
+      Day 3: Onsen
+    </p>
+  </div>
+
+  <div>
+    <form id="test-form">
+
+      <div>
+        <label>Field 1</label>
+        <input type="text" name="form_field_1" placeholder="Field 1"/>
+      </div>
+
+      <div>
+        <label>Field 2</label>
+        <input type="text" name="form_field_2" placeholder="Field 2"/>
+      </div>
+
+
+      <div>
+        <button type="submit"id="submit-form">Submit</button>
+      </div>
+
+
     </div>
-<div id="text-container" class="invite">
-<h4>Who - shrine</h4>
-<p>
 
-
-What
-
-Save the date: We're planning to tie the knot in Japan on March 16, 2020. Our celebration could not be complete without you.
-
-Couple of questions:
-
-Is it feasible for you to visit Japan with us in March 2020: yes, no
-e-mail addres:
-
-Some Details:
-
-Where
-
-Take a train less than two hours from Tokyo and stay nearby.
-
-When
-
-Throughout March we are planning a trip and residency south of Tokyo at the HackerFarm .
-
-During this time we will host a gathering, eating, traveling, and sight-seeing together, hopefully with you.
-
-adventure awaits!
-
-
-The food and Japanese hospitality are excellent.
-
-The Schedule:
-Day 1: ramen
-Day 2: Shabu Shabu
-Day 3:
-
-
-Who - shrine
-
-You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family.
-
-Why - unicorn
-
-We don’t tend to make a fuss about our relationship but we really wanted to take a pause to celebrate.
-
-Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you! Therefore this celebration could not be complete without you.
-
-
-Why Wokyo? - mountain
-
-Many people fantasize about going to Japan, we are such people.
-
-We have to get very far away from all our computers.
-
-You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family.
-</p>
-<h4>
-Why - unicorn
-</h4>
-<p>
-We don’t tend to make a fuss about our relationship but we really wanted to take a pause to celebrate.
-</p>
-<p>
-Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you! Therefore this celebration could not be complete without you.
-</p>
-<h4>
-Why Wokyo? - mountain
-</h4>
-<p>
-Many people fantasize about going to Japan, we are such people.
-</p>
-<p>
-We have to get very far away from all our computers.
-</p>
-<h4>
-Where
-</h4>
-<p>
-Take a train less than two hours from Tokyo and stay nearby.
-</p>
-<h4>
-What
-</h4>
-<p>
-Save the date for our wedding celebration in Tokyo.
-</p>
-<h4>
-When
-</h4>
-<p>
-Throughout March we are planning a trip and residency south of Tokyo at the HackerFarm .
-</p>
-<p>
-By the end of March we will host a gathering, hopefully with you in attendance.
-</p>
-<h4>
-How
-</h4>
-<p>
-Travel to Tokyo. Enjoy the time with friends and family.
-</p>
-<p>
-The food and Japanese hospitality are excellent.
-</p>
-<h4>
-The Schedule:
-</h4>
-<p>
-Day 1: ramen
-</p>
-<p>
-Day 2: Shabu Shabu
-</p>
-<p>
-Day 3:
-</p>
-</div>
-</body></html>
+  </body></html>
