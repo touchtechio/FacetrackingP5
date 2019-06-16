@@ -6,6 +6,7 @@ class Mountain{
     this.x = x
     this.y = y
     this.active = false
+    this.unlocked = false
   }
 
   makeMountain(){
@@ -51,6 +52,7 @@ class Mountain{
     // if balloon is near, reset activeStart time
     if (this.distance(x,y) < 200){
       this.active = true
+      this.unlocked = true
       // the last frame that balloon is near target
       this.activeStart = millis()
     }

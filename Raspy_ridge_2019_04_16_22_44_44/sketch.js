@@ -4,13 +4,13 @@
 // declare our face interface (from sketch_face.js)
 let face
 
-// create balloon objects to float around (from sketch_point.js)
+// balloon list composed of Point objects to float around (from sketch_point.js)
 let balloon = []
 
 // declare targets
 // must call checkDistance(x, y) with each balloon
 let targetMountain = new Mountain(200, 120)
-let targetShrine = new Shrine(1300, 520)
+let targetShrine = new Shrine(1300, 500)
 let targetUnicorn = new Unicorn(700, -50)
 let unicornCloud = new Cloud(700, 320)
 let unicornCloud2 = new Cloud(500, 350)
@@ -22,7 +22,7 @@ let b1, b2, c1, c2;
 
 // stroke color for selected objects
 let selRGBA = [255, 200, 255, 1];
-let selectDuration = 3000;
+let selectDuration = 5000;
 
 
 function setup() {
@@ -47,7 +47,6 @@ function setup() {
 
   // create face handler and drawer
   face = new Face()
-
   fill(255);
 }
 
@@ -57,6 +56,8 @@ function draw() {
   fill(c1);
   rect(0, height,width,height/2);
   invite();
+  text('look left or right to move ballon. Try to visit  sites on the page', 30, 30);
+  text('Make new balloons by clicking on the page', 30, 60);
 
   // draw targets
   targetMountain.makeMountain();
@@ -81,7 +82,7 @@ function draw() {
     targetMountain.checkDistance(balloon[i].x, balloon[i].y)
     targetShrine.checkDistance(balloon[i].x, balloon[i].y)
     targetUnicorn.checkDistance(balloon[i].x, balloon[i].y)
-
+    text("We're planning to tie the knot in Japan on March 16, 2020. This celebration could not be complete without you.", 30, height+30)
   }
 
   // check face point from camera and draw face
@@ -128,21 +129,21 @@ function invite(){
   // text box
   fill(255,200,255,1);
   stroke(255,200,255,1);
-  rect(0, height, width,150)
-  textSize(15);
+  rect(0, height, width,180)
+  textSize(25);
   strokeWeight(1)
   stroke(0,0,5,1);
   fill(0,0,5,1);
 
   //text('Count:' + balloon.length, 30, height-100);
-  if (targetShrine.active) {
-    text('You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family', 30, height-100);
+  if (targetShrine.unlocked) {
+    text('You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family', 30, height-70);
   }
-  if (targetMountain.active) {
-    text('Many people fantasize about going to Japan, we are such people. We have to get very far away from all our computers', 30, height-120);
+  if (targetMountain.unlocked) {
+    text('We really wanted to take a pause to celebrate. Many people fantasize about going to Japan, we are such people.', 30, height-110); //We have to get very far away from all our computers'
   }
-  if (targetUnicorn.active) {
-    text('We really wanted to take a pause to celebrate. Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you! Therefore this celebration could not be complete without you.', 30, height-80);
+  if (targetUnicorn.unlocked) {
+    text('Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you!', 30, height-30);
   }
   // if (balloon.length>0){
   //   text("MOUNTAIN:"+ targetMountain.distance(balloon[0].x, balloon[0].y), 30, height -80);
