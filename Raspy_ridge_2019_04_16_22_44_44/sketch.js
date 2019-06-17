@@ -23,10 +23,7 @@ let b1, b2, c1, c2;
 // stroke color for selected objects
 let selRGBA = [255, 200, 255, 1];
 let selectDuration = 5000;
-
 let submitted = false
-
-
 
 function submit() {
 
@@ -57,13 +54,10 @@ function submit() {
         console.log(error.toString());
       }
     );
-
 }
 
-
-
 function setup() {
-  var cnv = createCanvas(1800, 700);
+  var cnv = createCanvas(1700, 650);
 
   // html page div for canvas
   cnv.parent('sketch-holder');
@@ -93,9 +87,11 @@ function draw() {
   fill(c1);
   rect(0, height,width,height/2);
   invite();
-  textSize(15);
-  text('look left or right to move ballon. Try to visit  sites on the page', 30, 30);
-  text('Make new balloons by clicking on the page', 30, 60);
+  textSize(18);
+  stroke(15,100,150,1);
+  fill(15,100,150,1);
+  text("TO PLAY: Look left or right to move ballon. Try to visit sites on the page", 30, 30);
+  text("NOTES: Make new balloons by clicking on the page. Don't face your screen towards the light", 30, 60);
   if (submitted) text('SUBMITTED')
 
   // draw targets
@@ -177,26 +173,20 @@ function invite(){
   // text box
   fill(255,200,255,1);
   stroke(255,200,255,1);
-  rect(0, height, width,180)
+  rect(0, height, width,150)
   textSize(20);
   strokeWeight(1)
-  stroke(0,0,5,1);
-  fill(0,0,5,1);
+  noStroke();
+  fill(15,50,100,1);
 
   //text('Count:' + balloon.length, 30, height-100);
+  if (targetUnicorn.unlocked) {
+    text("We're getting married! Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you!", 30, height-105);
+  }
   if (targetShrine.unlocked) {
     text('You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family', 30, height-70);
   }
   if (targetMountain.unlocked) {
-    text('We really wanted to take a pause to celebrate. Many people fantasize about going to Japan, we are such people.', 30, height-110); //We have to get very far away from all our computers'
+    text("So we're to taking a short pause to celebrate with a wedding party. Many fantasize about spending time in Japan, we are such people", 30, height-35); //We have to get very far away from all our computers'
   }
-  if (targetUnicorn.unlocked) {
-    text('Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you!', 30, height-30);
-  }
-  // if (balloon.length>0){
-  //   text("MOUNTAIN:"+ targetMountain.distance(balloon[0].x, balloon[0].y), 30, height -80);
-  //   text("SHRINE:"+ targetShrine.distance(balloon[0].x, balloon[0].y), 30, height -60);
-  //   //text("SHRINE:"+ balloon[0].shrineDistance(), 30, height -60);
-  //   text("UNICORN:"+ targetUnicorn.distance(balloon[0].x, balloon[0].y), 30, height -40);
-  // }
 }

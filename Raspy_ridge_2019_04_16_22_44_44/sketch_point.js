@@ -3,7 +3,7 @@ class Point {
   constructor (x, y) {
     this.x = x
     this.y = y
-    this.liftRate = 1.0
+    this.liftRate = 1.2
     this.noise = noise(x, y)
   }
 

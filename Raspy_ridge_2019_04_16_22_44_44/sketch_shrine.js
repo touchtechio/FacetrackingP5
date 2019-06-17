@@ -22,6 +22,7 @@ class Shrine{
 
     if (this.active) strokeWeight(5);
 
+    // first tier
     fill(255,0,0,1);
     rect(x,y,w1,h1);
     let b1 = 10;
@@ -29,7 +30,8 @@ class Shrine{
     noStroke();
     rect(x,y,w1-b1,h1-b1);
 
-    let w2=w1-2;
+    // second tier, first shrink outer rect
+    let w2=w1-5;
     let h2=h1-5;
     let y2 =y-h1*2-10;
     stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
@@ -46,7 +48,7 @@ class Shrine{
     stroke(selRGBA[0],selRGBA[1],selRGBA[2],selRGBA[3]);
     fill(255,0,0,1);
     rect(x,y3,w3,h3);
-    b1 = 14;
+    b1 = 12;
     fill(255,255,255,1);
     noStroke();
     rect(x,y3,w2-b1,h2-b1);
