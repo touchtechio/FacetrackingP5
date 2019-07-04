@@ -30,8 +30,8 @@ function submit() {
   console.log('YOU ARE coming!')
   //alert('submitted')
   submitted = true
-  var url = 'http://54.191.170.5:5000/rsvp'; // A bad URL that will cause errors
-
+  var url = 'https://adellematt.com/rsvp';
+//  var url = 'http://54.191.170.5:5000/rsvp'; // A bad URL that will cause errors
 //  var url = 'http://localhost:5000/rsvp'; // A bad URL that will cause errors
 
   //TODO: fill iwth form data from html inputs
