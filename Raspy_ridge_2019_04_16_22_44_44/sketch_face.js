@@ -53,7 +53,7 @@ class Face {
         }
 
         // debug logging
-        console.log("face", (-distLeft/distRight)); //person looking left (distRight > distLeft), ->0, looking right (distLeft > distRight)->2
+        //console.log("face", (-distLeft/distRight)); //person looking left (distRight > distLeft), ->0, looking right (distLeft > distRight)->2
       }
     }
 
