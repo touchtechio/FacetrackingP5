@@ -1,7 +1,9 @@
+
 #export FLASK_APP=hello.py
 #export FLASK_ENV=development
 #python -m flask run --host=0.0.0.0
 
+import logging
 
 
 from flask import Flask
@@ -12,6 +14,18 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+
+logger = logging.getLogger('rsvp_api_server')
+logger.setLevel(logging.INFO)
+logging.basicConfig(filename='rsvp.log', level=logging.INFO)
+
+
+#fh = logging.FileHandler('rsvp.log')
+#logger.addHandler(fh)
+
+
+
+
 # wiring up event handler
 # when post request comes in on path
 @app.route('/rsvp', methods=['GET', 'POST', 'OPTIONS'])
@@ -20,6 +34,7 @@ def doPost():
     print(str(request))
     data = request.data
     print(str(data))
+    logging.info(str(data))
 #   print(str(request.invite))
 
 
