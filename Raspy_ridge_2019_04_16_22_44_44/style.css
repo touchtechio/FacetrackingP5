@@ -12,7 +12,8 @@ canvas {
 p {
   font-family:"Roboto";
   font-size: 0.9em; /* 14px/16=0.875em */
-
+  margin-block-start: .5em;
+  margin-block-end: .5em;
 }
 
 h4 {
@@ -40,9 +41,9 @@ h4 {
 }
 
 .form {
-height:400px
-
-
+  height:200px;
+  border: 1px solid;
+  padding: 1em;
 }
 
 /* for debugging layout issues*/
