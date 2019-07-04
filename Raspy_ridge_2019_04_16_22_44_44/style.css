@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 
 canvas {
@@ -11,13 +11,16 @@ canvas {
 
 p {
   font-family:"Roboto";
-  font-size: 0.9em; /* 14px/16=0.875em */
-  margin-block-start: .5em;
-  margin-block-end: .5em;
+  font-size: 1em; /* 14px/16=0.875em */
+  margin-block-start: 0.5em;
+  margin-block-end: 0;
 }
 
 h4 {
+  margin-top: 2px;
+  margin-block-end: 1em;
   font-family:"Roboto";
+  font-size: 1.2em;
 }
 
 .top
@@ -43,7 +46,26 @@ h4 {
 .form {
   height:200px;
   border: 1px solid;
-  padding: 1em;
+  padding: 2em;
+  background-color:aliceblue;
+}
+
+input[type=text] {
+  padding-left: 1em;
+  height: 25px;
+  position: relative;
+  left: 0.5em;
+  outline: none;
+  border: 2px solid #cdcdcd;
+  border-color: rgba(255, 0, 0, .5);
+  background-color: white;
+  font-size: 14px;
+}
+
+.emailTextBox {
+  width: 450px;
+  margin-left: 4px;
+  margin-right: -4px;
 }
 
 /* for debugging layout issues*/
@@ -62,11 +84,10 @@ h4 {
   height: 25px; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  opacity: 0.5; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
 }
-
 
 .switch {
   position: relative;
@@ -127,3 +148,40 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.w3-round-small{border-radius:2px}
+.w3-round,.w3-round-medium{border-radius:4px}
+.w3-round-large{border-radius:8px}
+.w3-round-xlarge{
+  border-radius:10px;
+  font-size:25px;
+  margin-left: 20px
+}
+.w3-round-xxlarge{border-radius:32px}
+
+/* Colors */
+.w3-amber,.w3-hover-amber:hover{color:#000!important;background-color:#ffc107!important}
+.w3-aqua,.w3-hover-aqua:hover{color:#000!important;background-color:#00ffff!important}
+.w3-blue,.w3-hover-blue:hover{color:#fff!important;background-color:#2196F3!important}
+.w3-light-blue,.w3-hover-light-blue:hover{color:#000!important;background-color:#87CEEB!important}
+.w3-brown,.w3-hover-brown:hover{color:#fff!important;background-color:#795548!important}
+.w3-cyan,.w3-hover-cyan:hover{color:#000!important;background-color:#00bcd4!important}
+.w3-blue-grey,.w3-hover-blue-grey:hover,.w3-blue-gray,.w3-hover-blue-gray:hover{color:#fff!important;background-color:#607d8b!important}
+.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}
+.w3-light-green,.w3-hover-light-green:hover{color:#000!important;background-color:#8bc34a!important}
+.w3-indigo,.w3-hover-indigo:hover{color:#fff!important;background-color:#3f51b5!important}
+.w3-khaki,.w3-hover-khaki:hover{color:#000!important;background-color:#f0e68c!important}
+.w3-lime,.w3-hover-lime:hover{color:#000!important;background-color:#cddc39!important}
+.w3-orange,.w3-hover-orange:hover{color:#000!important;background-color:#ff9800!important}
+.w3-deep-orange,.w3-hover-deep-orange:hover{color:#fff!important;background-color:#ff5722!important}
+.w3-pink,.w3-hover-pink:hover{color:#fff!important;background-color:#e91e63!important}
+.w3-purple,.w3-hover-purple:hover{color:#fff!important;background-color:#9c27b0!important}
+.w3-deep-purple,.w3-hover-deep-purple:hover{color:#fff!important;background-color:#673ab7!important}
+.w3-red,.w3-hover-red:hover{color:#fff!important;background-color:#f44336!important}
+.w3-sand,.w3-hover-sand:hover{color:#000!important;background-color:#fdf5e6!important}
+.w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#009688!important}
+.w3-yellow,.w3-hover-yellow:hover{color:#000!important;background-color:#ffeb3b!important}
+.w3-white,.w3-hover-white:hover{color:#000!important;background-color:#fff!important}
+.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
+.w3-text-dark-grey,.w3-hover-text-dark-grey:hover,.w3-text-dark-gray,.w3-hover-text-dark-gray:hover{color:#3a3a3a!important}
+.w3-text-teal,.w3-hover-text-teal:hover{color:#009688!important}
