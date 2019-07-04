@@ -107,14 +107,11 @@ function draw() {
   for (var i = 0; i <balloon.length; i++) {
 
     if (balloon[i].x < -10) {
-      console.log("offscreens");
       balloon[i].x = width+10;
     }
     if (balloon[i].x > width+10) {
-      console.log("right");
       balloon[i].x = -10;
     }
-    console.log("b",balloon[i].x)
     // delete balloon the are out of frame
     if (balloon[i].y < -100) {
       balloon.splice(i,1);
