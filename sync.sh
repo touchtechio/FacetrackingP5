@@ -12,6 +12,6 @@ else
 	  rsync -azvh --progress  -e "ssh -i $PEM_LOCATION" * ubuntu@adellematt.com:FacetrackingP5
 	  
 	  #copy files to public html dir
-	  ssh -i ~/matt-intel-aws.pem ubuntu@adellematt.com  "sudo cp -r ~/FacetrackingP5/Raspy_ridge_2019_04_16_22_44_44/* /var/www/html/"
+	  ssh -i $PEM_LOCATION ubuntu@adellematt.com  "sudo cp -r ~/FacetrackingP5/Raspy_ridge_2019_04_16_22_44_44/* /var/www/html/"
 fi
  
