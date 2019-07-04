@@ -59,11 +59,17 @@ function submit() {
 }
 
 function setup() {
-  var cnv = createCanvas(1700, 650);
+  //var cnv = createCanvas(1700, 650); windowWidth, windowHeight
+  var cnv = createCanvas(windowWidth, 650);
+
+  targetMountain.x = 1/6*windowWidth;
+  targetShrine.x = 3/4*windowWidth;
+  targetUnicorn.x = 1/2*windowWidth;
+  unicornCloud.x = 1/2*windowWidth;
+  unicornCloud2.x = unicornCloud.x-200;
 
   // html page div for canvas
   cnv.parent('sketch-holder');
-
   cnv.position(0, 0);
 
   bx = width / 2.0+200;
@@ -94,7 +100,6 @@ function draw() {
   fill(15,100,150,1);
   text("TO PLAY: Look left or right to move ballon. Try to visit sites on the page", 30, 30);
   text("NOTES: Make new balloons by clicking on the page. Don't face your screen towards the light", 30, 60);
-  if (submitted) text('SUBMITTED')
 
   // draw targets
   targetMountain.makeMountain();
@@ -171,21 +176,29 @@ function setGradient(x, y, w, h, c1, c2, axis) {
 function invite(){
   // text box
   fill(255,200,255,1);
-  stroke(255,200,255,1);
+  if (submitted) {
+    //fill(200,200,250);
+    noStroke();
+    textSize(80);
+    text('THANKS FOR SUBMITTING!', 30,height - 150);
+  };
+
+  //stroke(255,200,255,1);
   rect(0, height, width,150)
   textSize(20);
   strokeWeight(1)
   noStroke();
   fill(15,50,100,1);
 
+
   //text('Count:' + balloon.length, 30, height-100);
   if (targetUnicorn.unlocked) {
-    text("We're getting married! Our coming together has not been a coincidence but shaped by the wonderful people in our lives - you!", 30, height-105);
+    text("We're getting married! Our coming together has not been a coincidence, but shaped by the wonderful people in our lives - you!", 30, height-105);
   }
   if (targetShrine.unlocked) {
     text('You have touched our lives in immeasurable ways and we’ll forever be grateful and want you to be apart of our family', 30, height-70);
   }
   if (targetMountain.unlocked) {
-    text("So we're to taking a short pause to celebrate with a wedding party. Many fantasize about spending time in Japan, we are such people", 30, height-35); //We have to get very far away from all our computers'
+    text("We're taking a short pause to have a wedding celebration in Japan. We hope you can join us...", 30, height-35); //We have to get very far away from all our computers'
   }
 }
